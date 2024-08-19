@@ -12,5 +12,5 @@ export default function Error() {
       <br />
       <Link href="/">Return Home</Link>
     </div>
-  )
+  );
 }
