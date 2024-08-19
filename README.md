@@ -23,3 +23,4 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [ ] Edit page titles and favicon
 - [ ] Add transitions
 - [ ] Add transitions between pages
+- [ ] Add session validations and zod validations in the server actions
