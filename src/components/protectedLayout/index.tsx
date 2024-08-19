@@ -7,8 +7,6 @@ const ProtectedLayout = ({ children }: { children: React.ReactNode }) => {
   const { status: sessionStatus } = useSession();
 
   useEffect(() => {
-    console.log({ sessionStatus });
-
     if (sessionStatus === 'unauthenticated') {
       signIn();
     }

@@ -4,6 +4,7 @@
   padding: 0.5rem 1.25rem;
   color: $white;
   font-size: 17px;
+  transition: $transition;
 
   &[disabled] {
     opacity: 0.75;

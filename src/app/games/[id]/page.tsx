@@ -12,6 +12,8 @@ type Props = {
 export default async function GamePage({ params }: Props) {
   const game = await getGame(params.id);
 
+  console.log({ game });
+
   return (
     <>
       <PageInfo title={game.name} />

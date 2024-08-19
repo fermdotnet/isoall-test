@@ -1,8 +1,10 @@
 'use server';
-import { redirect } from 'next/navigation';
+import { redirect, notFound } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
 import type { Game } from '@/types/game';
 import type { GameFormData } from '@/types/form';
+
+const GAME_NOT_FOUND = 'Not found';
 
 export async function listGames() {
   const res = await fetch(`${process.env.MOCKAPI_URL}/games`);
@@ -14,6 +16,10 @@ export async function listGames() {
 export async function getGame(id: string) {
   const res = await fetch(`${process.env.MOCKAPI_URL}/games/${id}`);
   const game = await res.json();
+
+  if (game === GAME_NOT_FOUND) {
+    notFound();
+  }
 
   return game as Game;
 }

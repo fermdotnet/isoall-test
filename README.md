@@ -14,15 +14,11 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## TODO list
 
-- [ ] Add a `404` page
-- [ ] Add a `500` page
-- [ ] Improve loading page
 - [ ] Allow home page with no session to be public
 - [ ] Add tests
 - [ ] Add storybook
 - [ ] SEO
-- [ ] Edit page titles and favicon
-- [ ] Add transitions
+- [ ] Edit page titles
 - [ ] Add transitions between pages
 - [ ] Add session validations and zod validations in the server actions
 - [ ] Take care of the dates created_at and updated_at
