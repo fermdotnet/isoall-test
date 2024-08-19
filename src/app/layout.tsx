@@ -1,3 +1,4 @@
+import React from 'react';
 import type { Metadata } from 'next';
 import SessionWrapper from '@/components/sessionWrapper';
 import ProtectedLayout from '@/components/protectedLayout';
