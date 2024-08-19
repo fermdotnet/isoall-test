@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  justify-content: start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  a {
+    color: $white;
+  }
+
+  div {
+    font-size: 18px;
+  }
+}

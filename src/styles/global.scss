@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+@import 'material-icons/iconfont/material-icons.css';
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Orbitron", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+a,
+button {
+  cursor: pointer;
+}
+
+html,
+body {
+  height: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  background-image: $main-gradient;
+
+  > main {
+    width: 100%;
+    max-width: $page-max-width;
+    margin: 0 auto;
+    padding: $page-padding;
+    color: $white;
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 0.5rem;
+}
+
+.form-input {
+  float: left;
+  width: 100%;
+
+  > input,
+  > select {
+    width: 100%;
+    height: 2.25rem;
+    padding: 0 0.75rem;
+    border: 0;
+  }
+}

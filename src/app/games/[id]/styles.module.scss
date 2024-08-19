@@ -1,0 +1,31 @@
+.hero {
+  @include aspect-ratio(16, 9);
+
+  > div {
+    background-color: $white;
+    background-size: cover;
+  }
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.info {
+  width: 100%;
+
+  > tbody > tr {
+    > td {
+      padding-bottom: 0.5rem;
+    }
+
+    > :first-child {
+      font-weight: bold;
+      width: 20%;
+      max-width: 250px;
+      min-width: 126px;
+    }
+  }
+}

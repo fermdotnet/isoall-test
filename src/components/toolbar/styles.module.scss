@@ -1,0 +1,11 @@
+.toolbar {
+  width: 100%;
+  max-width: $page-max-width;
+  height: 5rem;
+  padding: 0 $page-padding;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.5px solid $white;
+}
