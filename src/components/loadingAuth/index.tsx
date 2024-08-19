@@ -1,10 +1,7 @@
-"use client";
+'use client';
 
 const LoadingAuth = () => {
-
-  return (
-    <>Loading...</>
-  )
-}
+  return <>Loading...</>;
+};
 
 export default LoadingAuth;

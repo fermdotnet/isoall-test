@@ -3,19 +3,14 @@ import styles from './styles.module.scss';
 
 type Props = {
   children: React.ReactNode;
-  onClick: () => void;
+  onClick?: () => void;
   type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
 };
 
 const Button = ({ children, onClick, disabled = false, type = 'button' }: Props) => {
   return (
-    <button
-      type={type}
-      onClick={onClick}
-      className={styles.button}
-      disabled={disabled}
-    >
+    <button type={type} onClick={onClick} className={styles.button} disabled={disabled}>
       {children}
     </button>
   );

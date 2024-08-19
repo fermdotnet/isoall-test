@@ -1,10 +1,10 @@
 import PageInfo from '@/components/pageInfo';
 import GameForm from '@/components/gameForm';
-import { getGame } from "@/app/actions/games";
+import { getGame } from '@/app/actions/games';
 
 type Props = {
   params: {
-    id: string
+    id: string;
   };
 };
 

@@ -1,16 +1,10 @@
 import React from 'react';
-import { FormSelectProps } from "@/types/form";
+import { FormSelectProps } from '@/types/form';
 
-const FormSelect: React.FC<FormSelectProps> = ({
-  name,
-  register,
-  error,
-  valueAsNumber,
-  options,
-}) => (
+const FormSelect: React.FC<FormSelectProps> = ({ name, register, error, valueAsNumber, options }) => (
   <div className="form-input">
     <select {...register(name, { valueAsNumber })}>
-      {options.map((option) => (
+      {options.map(option => (
         <option key={option.value} value={option.value}>
           {option.label}
         </option>

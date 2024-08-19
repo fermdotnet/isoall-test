@@ -1,9 +1,9 @@
 'use client';
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import Categories from "@/constants/categories";
-import { GameFormData, GameSchema } from "@/types/form";
-import { Game } from "@/types/game";
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import Categories from '@/constants/categories';
+import { GameFormData, GameSchema } from '@/types/form';
+import { Game } from '@/types/game';
 import Button from '@/components/button';
 import FormField from '@/components/formField';
 import FormSelect from '@/components/formSelect';
@@ -18,10 +18,10 @@ const GameForm = ({ data }: Props) => {
     register,
     handleSubmit,
     formState: { errors, isValid },
-    setError,
+    setError
   } = useForm<GameFormData>({
     resolver: zodResolver(GameSchema),
-    defaultValues: data,
+    defaultValues: data
   });
 
   const onSubmit = async (formData: GameFormData) => {
@@ -38,26 +38,18 @@ const GameForm = ({ data }: Props) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <FormField
-        type="text"
-        placeholder="Name"
-        name="name"
-        register={register}
-        error={errors.name}
-      />
+      <FormField type="text" placeholder="Name" name="name" register={register} error={errors.name} />
       <FormSelect
         name="category"
         register={register}
         error={errors.category}
-        options={
-          Object.values(Categories).map((category) => ({
-            value: category,
-            label: category.charAt(0).toUpperCase() + category.slice(1)
-          }))
-        }
+        options={Object.values(Categories).map(category => ({
+          value: category,
+          label: category.charAt(0).toUpperCase() + category.slice(1)
+        }))}
       />
       <Button type="submit" disabled={!isValid}>
-        {!data ? "Add new game" : "Update game"}
+        {!data ? 'Add new game' : 'Update game'}
       </Button>
     </form>
   );

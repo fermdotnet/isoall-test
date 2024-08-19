@@ -3,7 +3,7 @@ enum Categories {
   ARCADE = 'arcade',
   PUZZLE = 'puzzle',
   STRATEGY = 'strategy',
-  SPORTS = 'sports',
+  SPORTS = 'sports'
 }
 
 export default Categories;

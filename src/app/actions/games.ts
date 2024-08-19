@@ -22,14 +22,14 @@ export async function createGame(game: GameFormData) {
   const res = await fetch(`${process.env.MOCKAPI_URL}/games`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify({
       ...game,
       id: Math.random().toString(36).substr(2, 9),
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
-    }),
+    })
   });
 
   if (res.ok) {
@@ -44,9 +44,9 @@ export async function updateGame(id: string, game: GameFormData) {
   const res = await fetch(`${process.env.MOCKAPI_URL}/games/${id}`, {
     method: 'PUT',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     },
-    body: JSON.stringify(game),
+    body: JSON.stringify(game)
   });
 
   if (res.ok) {
@@ -60,7 +60,7 @@ export async function updateGame(id: string, game: GameFormData) {
 
 export async function deleteGame(id: string) {
   const res = await fetch(`${process.env.MOCKAPI_URL}/games/${id}`, {
-    method: 'DELETE',
+    method: 'DELETE'
   });
 
   if (res.ok) {

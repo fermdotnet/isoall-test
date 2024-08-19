@@ -1,7 +1,7 @@
 import GameCard from '@/components/gameCard';
 import NewGameButton from '@/components/newGameButton';
 import PageInfo from '@/components/pageInfo';
-import { listGames } from "@/app/actions/games";
+import { listGames } from '@/app/actions/games';
 import styles from './styles.module.scss';
 
 export default async function HomePage() {
@@ -12,7 +12,7 @@ export default async function HomePage() {
       <PageInfo title="Games" back={false} />
 
       <div className={styles.games}>
-        {games.map((game) => (
+        {games.map(game => (
           <GameCard key={game.id} data={game} />
         ))}
 

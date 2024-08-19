@@ -1,11 +1,11 @@
 import PageInfo from '@/components/pageInfo';
-import GameActions from "@/components/gameActions";
+import GameActions from '@/components/gameActions';
 import { getGame } from '@/app/actions/games';
 import styles from './styles.module.scss';
 
 type Props = {
   params: {
-    id: string
+    id: string;
   };
 };
 
@@ -17,9 +17,11 @@ export default async function GamePage({ params }: Props) {
       <PageInfo title={game.name} />
 
       <div className={styles.hero}>
-        <div style={{
-          backgroundImage: `url(/images/categories/${game.category}.jpg)`
-        }}></div>
+        <div
+          style={{
+            backgroundImage: `url(/images/categories/${game.category}.jpg)`
+          }}
+        ></div>
       </div>
 
       <div className={styles.buttons}>

@@ -6,11 +6,13 @@ export type GameFormData = {
   category: string;
 };
 
-export const GameSchema: ZodType<GameFormData> = z
-  .object({
-    name: z.string().min(3, "Please enter a valid game name. Min 3 characters."),
-    category: z.string().min(4, "Please enter a valid category name.")
-  });
+export const GameSchema: ZodType<GameFormData> = z.object({
+  name: z
+    .string()
+    .min(3, 'Please enter a valid game name. Min 3 characters.')
+    .max(20, 'Please enter a valid game name. Max 20 characters.'),
+  category: z.string()
+});
 
 export type ValidFieldNames = 'name' | 'category';
 

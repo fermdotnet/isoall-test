@@ -1,7 +1,7 @@
-"use client";
+'use client';
 import React, { useEffect } from 'react';
 import { useSession, signIn } from 'next-auth/react';
-import LoadingAuth from "@/components/loadingAuth";
+import LoadingAuth from '@/components/loadingAuth';
 
 const ProtectedLayout = ({ children }: { children: React.ReactNode }) => {
   const { status: sessionStatus } = useSession();
@@ -19,6 +19,6 @@ const ProtectedLayout = ({ children }: { children: React.ReactNode }) => {
   }
 
   return children;
-}
+};
 
 export default ProtectedLayout;

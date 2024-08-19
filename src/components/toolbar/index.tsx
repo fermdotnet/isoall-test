@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import { signOut } from 'next-auth/react';
 import Link from 'next/link';
 import Button from '@/components/button';
@@ -18,7 +18,7 @@ const Toolbar = () => {
       </Link>
       <Button onClick={handleLogout}>Logout</Button>
     </header>
-  )
-}
+  );
+};
 
 export default Toolbar;

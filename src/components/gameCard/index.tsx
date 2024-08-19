@@ -7,7 +7,6 @@ type Props = {
 };
 
 const GameCard = ({ data }: Props) => {
-
   return (
     <Link href={`/games/${data.id}`}>
       <div className={styles.card}>
@@ -16,9 +15,7 @@ const GameCard = ({ data }: Props) => {
             backgroundImage: `url(/images/categories/${data.category}.jpg)`
           }}
         >
-          <div className={styles.name}>
-            {data.name}
-          </div>
+          <div className={styles.name}>{data.name}</div>
         </div>
       </div>
     </Link>

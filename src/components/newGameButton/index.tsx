@@ -6,9 +6,7 @@ const NewGameButton = () => {
   return (
     <Link href="/games/create">
       <div className={styles.container}>
-        <div>
-          Add game
-        </div>
+        <div>Add game</div>
       </div>
     </Link>
   );
