@@ -6,6 +6,8 @@ $pacman-size: 70px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  margin-top: $pacman-size * -1;
+  margin-left: $pacman-size * -1;
 }
 
 .pacman {

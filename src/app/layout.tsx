@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import SessionWrapper from '@/components/sessionWrapper';
 import ProtectedLayout from '@/components/protectedLayout';
 import Toolbar from '@/components/toolbar';
+import LayoutTransition from '@/components/layoutTransition';
 import '../styles/global.scss';
 
 export const metadata: Metadata = {
@@ -21,7 +22,9 @@ export default function RootLayout({
         <body>
           <ProtectedLayout>
             <Toolbar />
-            <main>{children}</main>
+            <main>
+              <LayoutTransition>{children}</LayoutTransition>
+            </main>
           </ProtectedLayout>
         </body>
       </html>
