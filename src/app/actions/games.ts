@@ -2,8 +2,11 @@
 
 import { redirect, notFound } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import type { Game } from '@/types/game';
 import type { GameFormData } from '@/types/form';
+import { GameSchema } from '@/types/form';
 
 const GAME_NOT_FOUND = 'Not found';
 
@@ -26,6 +29,18 @@ export async function getGame(id: string) {
 }
 
 export async function createGame(game: GameFormData) {
+  const session = await getServerSession(authOptions);
+
+  if (!session) {
+    return new Error('Unauthorized');
+  }
+
+  const result = GameSchema.safeParse(game);
+
+  if (!result.success) {
+    return new Error('Invalid game data');
+  }
+
   const res = await fetch(`${process.env.MOCKAPI_URL}/games`, {
     method: 'POST',
     headers: {
@@ -47,6 +62,18 @@ export async function createGame(game: GameFormData) {
 }
 
 export async function updateGame(id: string, game: GameFormData) {
+  const session = await getServerSession(authOptions);
+
+  if (!session) {
+    return new Error('Unauthorized');
+  }
+
+  const result = GameSchema.safeParse(game);
+
+  if (!result.success) {
+    return new Error('Invalid game data');
+  }
+
   const current = await getGame(id);
 
   const res = await fetch(`${process.env.MOCKAPI_URL}/games/${id}`, {
@@ -71,6 +98,12 @@ export async function updateGame(id: string, game: GameFormData) {
 }
 
 export async function deleteGame(id: string) {
+  const session = await getServerSession(authOptions);
+
+  if (!session) {
+    return new Error('Unauthorized');
+  }
+
   const res = await fetch(`${process.env.MOCKAPI_URL}/games/${id}`, {
     method: 'DELETE'
   });
