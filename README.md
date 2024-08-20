@@ -16,5 +16,3 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 - [ ] Add tests
 - [ ] Add storybook
-- [ ] SEO
-- [ ] Edit page titles

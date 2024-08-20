@@ -4,10 +4,11 @@ import SessionWrapper from '@/components/sessionWrapper';
 import ProtectedLayout from '@/components/protectedLayout';
 import Toolbar from '@/components/toolbar';
 import LayoutTransition from '@/components/layoutTransition';
+import { getTitle } from '@/utils/seo';
 import '../styles/global.scss';
 
 export const metadata: Metadata = {
-  title: 'isoall - Next.js test',
+  title: getTitle('Next.js Test Project'),
   description: 'This is a test project using Next.js for isoall'
 };
 

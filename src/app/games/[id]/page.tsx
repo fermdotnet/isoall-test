@@ -1,7 +1,9 @@
+import { Metadata } from 'next';
 import PageInfo from '@/components/pageInfo';
 import GameActions from '@/components/gameActions';
 import { getGame } from '@/app/actions/games';
 import { fullDateTimeOptions } from '@/constants/dates';
+import { getTitle } from '@/utils/seo';
 import styles from './styles.module.scss';
 
 type Props = {
@@ -9,6 +11,15 @@ type Props = {
     id: string;
   };
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const game = await getGame(params.id);
+
+  return {
+    title: getTitle(game.name),
+    description: `${game.name} in the ${game.category} category`
+  };
+}
 
 export default async function GamePage({ params }: Props) {
   const game = await getGame(params.id);
