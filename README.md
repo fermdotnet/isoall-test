@@ -21,4 +21,3 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [ ] Edit page titles
 - [ ] Add transitions between pages
 - [ ] Add session validations and zod validations in the server actions
-- [ ] Take care of the dates created_at and updated_at

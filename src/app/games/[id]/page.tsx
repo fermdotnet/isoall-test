@@ -1,6 +1,7 @@
 import PageInfo from '@/components/pageInfo';
 import GameActions from '@/components/gameActions';
 import { getGame } from '@/app/actions/games';
+import { fullDateTimeOptions } from '@/constants/dates';
 import styles from './styles.module.scss';
 
 type Props = {
@@ -11,8 +12,6 @@ type Props = {
 
 export default async function GamePage({ params }: Props) {
   const game = await getGame(params.id);
-
-  console.log({ game });
 
   return (
     <>
@@ -46,11 +45,15 @@ export default async function GamePage({ params }: Props) {
           </tr>
           <tr>
             <td>Created at</td>
-            <td>{game.created_at}</td>
+            <td>{new Date(game.createdAt).toLocaleDateString('en-US', fullDateTimeOptions)}</td>
           </tr>
           <tr>
             <td>Updated at</td>
-            <td>{game.updated_at}</td>
+            <td>
+              {game.createdAt !== game.updatedAt
+                ? new Date(game.updatedAt).toLocaleDateString('en-US', fullDateTimeOptions)
+                : '-'}
+            </td>
           </tr>
         </tbody>
       </table>
