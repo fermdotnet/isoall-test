@@ -1,7 +1,7 @@
 'use client';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import Categories from '@/constants/categories';
+import Categories from '@/types/categories';
 import { GameFormData, GameSchema } from '@/types/form';
 import { Game } from '@/types/game';
 import Button from '@/components/button';

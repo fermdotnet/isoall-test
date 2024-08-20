@@ -1,12 +1,20 @@
 'use client';
-import { signOut } from 'next-auth/react';
+
+import { signIn, signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
+import { SessionStatus } from '@/types/session';
 import Button from '@/components/button';
 import Logo from '@/components/logo';
 
 import styles from './styles.module.scss';
 
 const Toolbar = () => {
+  const { status: sessionStatus } = useSession();
+
+  const handleLogin = () => {
+    signIn();
+  };
+
   const handleLogout = () => {
     signOut();
   };
@@ -16,7 +24,9 @@ const Toolbar = () => {
       <Link href="/">
         <Logo />
       </Link>
-      <Button onClick={handleLogout}>Logout</Button>
+
+      {sessionStatus === SessionStatus.AUTHENTICATED && <Button onClick={handleLogout}>Logout</Button>}
+      {sessionStatus === SessionStatus.UNAUTHENTICATED && <Button onClick={handleLogin}>Login</Button>}
     </header>
   );
 };

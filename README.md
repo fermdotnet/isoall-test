@@ -14,7 +14,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## TODO list
 
-- [ ] Allow home page with no session to be public
 - [ ] Add tests
 - [ ] Add storybook
 - [ ] SEO

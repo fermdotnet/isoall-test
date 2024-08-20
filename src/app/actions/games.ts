@@ -1,4 +1,5 @@
 'use server';
+
 import { redirect, notFound } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
 import type { Game } from '@/types/game';

@@ -1,19 +1,25 @@
 'use client';
-import React, { useEffect } from 'react';
-import { useSession, signIn } from 'next-auth/react';
+
+import React from 'react';
+import { usePathname, redirect } from 'next/navigation';
+import { useSession } from 'next-auth/react';
+import { SessionStatus } from '@/types/session';
 import LoadingAuth from '@/components/loadingAuth';
 
 const ProtectedLayout = ({ children }: { children: React.ReactNode }) => {
+  const pathname = usePathname();
   const { status: sessionStatus } = useSession();
 
-  useEffect(() => {
-    if (sessionStatus === 'unauthenticated') {
-      signIn();
-    }
-  }, [sessionStatus]);
-
-  if (sessionStatus === 'loading' || sessionStatus === 'unauthenticated') {
+  if (sessionStatus === SessionStatus.LOADING) {
     return <LoadingAuth />;
+  }
+
+  if (
+    sessionStatus === SessionStatus.UNAUTHENTICATED &&
+    (pathname === '/games/create' || pathname.startsWith('/games/edit/'))
+  ) {
+    redirect('/');
+    return null;
   }
 
   return children;
