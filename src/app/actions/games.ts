@@ -3,7 +3,7 @@
 import { redirect, notFound } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/utils/authOptions';
 import type { Game } from '@/types/game';
 import type { GameFormData } from '@/types/form';
 import { GameSchema } from '@/types/form';
@@ -18,7 +18,9 @@ export async function listGames() {
 }
 
 export async function getGame(id: string) {
-  const res = await fetch(`${process.env.MOCKAPI_URL}/games/${id}`);
+  const res = await fetch(`${process.env.MOCKAPI_URL}/games/${id}`, {
+    cache: 'no-store'
+  });
   const game = await res.json();
 
   if (game === GAME_NOT_FOUND) {
@@ -41,16 +43,18 @@ export async function createGame(game: GameFormData) {
     return new Error('Invalid game data');
   }
 
+  const data = {
+    ...game,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  };
+
   const res = await fetch(`${process.env.MOCKAPI_URL}/games`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({
-      ...game,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    })
+    body: JSON.stringify(data)
   });
 
   if (res.ok) {
