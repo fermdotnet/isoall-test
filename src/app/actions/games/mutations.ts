@@ -13,13 +13,13 @@ export async function createGame(game: GameFormData) {
   const session = await getServerSession(authOptions);
 
   if (!session) {
-    return new Error('Unauthorized');
+    throw new Error('Unauthorized');
   }
 
   const result = GameSchema.safeParse(game);
 
   if (!result.success) {
-    return new Error('Invalid game data');
+    throw new Error('Invalid game data');
   }
 
   const data = {
@@ -42,13 +42,13 @@ export async function updateGame(id: string, game: GameFormData) {
   const session = await getServerSession(authOptions);
 
   if (!session) {
-    return new Error('Unauthorized');
+    throw new Error('Unauthorized');
   }
 
   const result = GameSchema.safeParse(game);
 
   if (!result.success) {
-    return new Error('Invalid game data');
+    throw new Error('Invalid game data');
   }
 
   const current = (await fetchGet(`/games/${id}`, {}, [nextTags.GAME])).json;
@@ -75,7 +75,7 @@ export async function deleteGame(id: string) {
   const session = await getServerSession(authOptions);
 
   if (!session) {
-    return new Error('Unauthorized');
+    throw new Error('Unauthorized');
   }
 
   const res = await fetchDelete(`/games/${id}`, [nextTags.GAME]);

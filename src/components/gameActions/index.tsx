@@ -18,8 +18,10 @@ export default function GameActions({ id }: Props) {
     router.push(`/games/edit/${id}`);
   };
 
-  const handleDelete = async () => {
-    deleteGame(id);
+  const handleDelete = () => {
+    deleteGame(id).catch(err => {
+      alert(err.message || 'An error occurred deleting the game');
+    });
   };
 
   if (sessionStatus !== SessionStatus.AUTHENTICATED) {

@@ -24,15 +24,19 @@ const GameForm = ({ data }: Props) => {
     defaultValues: data
   });
 
-  const onSubmit = async (formData: GameFormData) => {
+  const onSubmit = (formData: GameFormData) => {
     if (!isValid) {
       return;
     }
 
     if (data) {
-      updateGame(data.id, formData);
+      updateGame(data.id, formData).catch(err => {
+        alert(err.message || 'An error occurred updating the game');
+      });
     } else {
-      createGame(formData);
+      createGame(formData).catch(err => {
+        alert(err.message || 'An error occurred creating the game');
+      });
     }
   };
 
