@@ -4,7 +4,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Button from '@/components/button';
 import { SessionStatus } from '@/types/session';
-import { deleteGame } from '@/app/actions/games';
+import { deleteGame } from '@/app/actions/games/mutations';
 
 type Props = {
   id: string;

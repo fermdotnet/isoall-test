@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import PageInfo from '@/components/pageInfo';
 import GameActions from '@/components/gameActions';
-import { getGame } from '@/app/actions/games';
+import { getGame } from '@/app/actions/games/queries';
 import { fullDateTimeOptions } from '@/constants/dates';
 import { getTitle } from '@/utils/seo';
 import styles from './styles.module.scss';

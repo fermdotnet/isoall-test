@@ -1,34 +1,13 @@
 'use server';
 
-import { redirect, notFound } from 'next/navigation';
-import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
+import { revalidateTag } from 'next/cache';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/utils/authOptions';
-import type { Game } from '@/types/game';
+import { fetchPost, fetchPut, fetchGet, fetchDelete } from '@/utils/fetch';
 import type { GameFormData } from '@/types/form';
 import { GameSchema } from '@/types/form';
-
-const GAME_NOT_FOUND = 'Not found';
-
-export async function listGames() {
-  const res = await fetch(`${process.env.MOCKAPI_URL}/games`);
-  const games = await res.json();
-
-  return games as Game[];
-}
-
-export async function getGame(id: string) {
-  const res = await fetch(`${process.env.MOCKAPI_URL}/games/${id}`, {
-    cache: 'no-store'
-  });
-  const game = await res.json();
-
-  if (game === GAME_NOT_FOUND) {
-    notFound();
-  }
-
-  return game as Game;
-}
+import nextTags from '@/types/nextTags';
 
 export async function createGame(game: GameFormData) {
   const session = await getServerSession(authOptions);
@@ -49,16 +28,10 @@ export async function createGame(game: GameFormData) {
     updatedAt: new Date()
   };
 
-  const res = await fetch(`${process.env.MOCKAPI_URL}/games`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  });
+  const res = await fetchPost('/games', data, [nextTags.GAME]);
 
   if (res.ok) {
-    revalidatePath('/');
+    revalidateTag(nextTags.GAME);
     redirect('/');
   }
 
@@ -78,23 +51,20 @@ export async function updateGame(id: string, game: GameFormData) {
     return new Error('Invalid game data');
   }
 
-  const current = await getGame(id);
+  const current = (await fetchGet(`/games/${id}`, {}, [nextTags.GAME])).json;
 
-  const res = await fetch(`${process.env.MOCKAPI_URL}/games/${id}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
+  const res = await fetchPut(
+    `/games/${id}`,
+    {
       ...current,
       ...game,
       updatedAt: new Date().toISOString()
-    })
-  });
+    },
+    [nextTags.GAME]
+  );
 
   if (res.ok) {
-    revalidatePath('/');
-    revalidatePath(`/games/${id}`);
+    revalidateTag(nextTags.GAME);
     redirect(`/games/${id}`);
   }
 
@@ -108,12 +78,10 @@ export async function deleteGame(id: string) {
     return new Error('Unauthorized');
   }
 
-  const res = await fetch(`${process.env.MOCKAPI_URL}/games/${id}`, {
-    method: 'DELETE'
-  });
+  const res = await fetchDelete(`/games/${id}`, [nextTags.GAME]);
 
   if (res.ok) {
-    revalidatePath('/');
+    revalidateTag(nextTags.GAME);
     redirect('/');
   }
 

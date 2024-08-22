@@ -1,7 +1,7 @@
 import GameCard from '@/components/gameCard';
 import NewGameButton from '@/components/newGameButton';
 import PageInfo from '@/components/pageInfo';
-import { listGames } from '@/app/actions/games';
+import { listGames } from '@/app/actions/games/queries';
 import styles from './styles.module.scss';
 
 export default async function HomePage() {

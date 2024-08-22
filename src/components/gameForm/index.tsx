@@ -7,7 +7,7 @@ import { Game } from '@/types/game';
 import Button from '@/components/button';
 import FormField from '@/components/formField';
 import FormSelect from '@/components/formSelect';
-import { createGame, updateGame } from '@/app/actions/games';
+import { createGame, updateGame } from '@/app/actions/games/mutations';
 
 type Props = {
   data?: Game;

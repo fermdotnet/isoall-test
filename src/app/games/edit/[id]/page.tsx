@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import PageInfo from '@/components/pageInfo';
 import GameForm from '@/components/gameForm';
-import { getGame } from '@/app/actions/games';
+import { getGame } from '@/app/actions/games/queries';
 import { getTitle } from '@/utils/seo';
 
 type Props = {
